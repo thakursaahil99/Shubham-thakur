@@ -1,0 +1,122 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-paper text-ink antialiased;
+}
+
+::selection {
+  background: #ff5a1f;
+  color: #fff;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #f3efe7;
+}
+::-webkit-scrollbar-thumb {
+  background: #121212;
+  border-radius: 10px;
+  border: 2px solid #f3efe7;
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8;
+  }
+  .eyebrow {
+    @apply flex w-fit items-center gap-2.5 font-mono text-[11px] uppercase tracking-[0.22em] text-muted;
+  }
+  .eyebrow::before {
+    content: "";
+    @apply h-2 w-2 shrink-0 rounded-full bg-accent;
+  }
+  .card {
+    @apply rounded-3xl border border-ink/10 bg-white/70;
+  }
+  .btn-primary {
+    @apply inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3.5 text-sm font-medium text-paper transition-colors duration-300 hover:bg-accent;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 rounded-full border border-ink/20 px-6 py-3.5 text-sm font-medium text-ink transition-colors duration-300 hover:border-ink hover:bg-ink hover:text-paper;
+  }
+  .chip {
+    @apply rounded-full border border-ink/15 px-3 py-1 text-xs text-ink/70;
+  }
+  .link-u {
+    background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+    transition: background-size 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .link-u:hover {
+    background-size: 100% 1px;
+  }
+  /* Skip layout/paint for off-screen project cards */
+  .cw-card {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 300px;
+  }
+}
+
+/* Hide the native cursor only where the custom one is active */
+@media (pointer: fine) {
+  .has-cursor,
+  .has-cursor a,
+  .has-cursor button,
+  .has-cursor label {
+    cursor: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 0;
+  }
+  main *,
+  main {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+  .print-sheet {
+    padding: 12mm 14mm !important;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+    border-radius: 0 !important;
+    max-width: none !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+    border: none !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  html,
+  body {
+    background: #fff !important;
+  }
+}
